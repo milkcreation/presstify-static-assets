@@ -8,20 +8,9 @@
  * @version 2.0.0
  */
 
-use Composer\Autoload\ClassLoader;
 use tiFy\Plugins\StaticAssets\Server\Container;
 
-/** Deboggage */
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+define('SHORTINIT', true);
+require_once '../../../wp-load.php';
 
-if (file_exists('../../autoload.php')) :
-    include ('../../autoload.php');
-    $loader = new ClassLoader();
-    $loader->addPsr4('tiFy\Plugins\StaticAssets\\', __DIR__ . '/');
-    $loader->register();
-
-    new Container();
-endif;
-
-
+new Container();

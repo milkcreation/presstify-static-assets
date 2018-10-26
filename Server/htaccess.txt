@@ -1,0 +1,9 @@
+# !static-assets
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /shop.pixvert.fr/assets/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule . /shop.pixvert.fr/vendor/presstify-plugins/static-assets/server.php [L]
+</IfModule>
+# static-assets!

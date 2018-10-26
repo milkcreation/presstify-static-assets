@@ -43,7 +43,7 @@ class ServiceProvider extends AbstractServiceProvider
         $this->getContainer()->share(
             'img.config',
             function() {
-                $attrs = require_once(dirname(__DIR__) . '/Resources/config/image.php');
+                $attrs = require_once(ABSPATH. 'wp-content/themes/' . get_option('template') . '/config/static-assets.php');
                 return new Fluent($attrs);
             }
         );
