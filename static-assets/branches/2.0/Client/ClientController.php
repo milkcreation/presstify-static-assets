@@ -94,8 +94,8 @@ class ClientController extends ParamsBagController
     public function url($path = null, $params = [])
     {
         if (is_null($path)) :
-            return rtrim((($url = $this->get('url')) ? $url : home_url('/')), '/') .
-                (($base_path = $this->get('base_path')) ? '/' . ltrim(rtrim($base_path, '/'), '/') : '');
+            return rtrim((($url = $this->get('url')) ? $url : request()->getBaseUrl()), '/') .
+                (($base_path = $this->get('base_url')) ? '/' . ltrim(rtrim($base_path, '/'), '/') : '');
         elseif ($secure = $this->get('secure')) :
             return $this->url() . (new UrlBuilder('', new Signature($secure)))->getUrl($path, $params);
         else :

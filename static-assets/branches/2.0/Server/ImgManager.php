@@ -2,6 +2,7 @@
 
 namespace tiFy\Plugins\StaticAssets\Server;
 
+use Dotenv\Dotenv;
 use League\Container\ContainerInterface;
 use League\Glide\Signatures\Signature;
 use League\Glide\Filesystem\FileNotFoundException;
@@ -38,10 +39,19 @@ class ImgManager
         $this->img = $this;
         $this->container = $container;
 
+        $path = '';
+        if ($prefix = $this->request()->server('CONTEXT_PREFIX')) :
+            $path = rtrim($prefix, '/');
+        endif;
+        if ($base_url = $this->config('base_url')) :
+            $path .= '/' . rtrim(ltrim($base_url, '/'), '/');
+        endif;
+        $path .= '/{path:.*}';
+
         // Routage.
         $this->route(
             'GET',
-            'shop.pixvert.fr/static/{path:.*}',
+            $path,
             function (ServerRequestInterface $request, ResponseInterface $response, $args) {
                 $path = $args['path'] ?? null;
 
@@ -49,7 +59,7 @@ class ImgManager
                     'source' => $this->config('source') ? : dirname(__DIR__) . '/Resources/source',
                     'cache'  => $this->config('cache') ? : dirname(__DIR__) . '/Resources/cache'
                 ]);
-                /*
+
                 if ($secure = $this->config('secure')) :
                     try {
                         (new Signature($secure))
@@ -57,18 +67,22 @@ class ImgManager
                                 $path,
                                 $request->getQueryParams()
                             );
+                        $server->outputImage($path, $request->getQueryParams());
                     } catch (SignatureException $e) {
-                        $server->outputImage($this->config('holder'), $request->getQueryParams());
-                        $response->getBody()->write($e->getMessage());
+                        $this->config('debug', false)
+                            ? $response->getBody()->write($e->getMessage())
+                            : $server->outputImage($this->config('holder'), $request->getQueryParams());
+
+                    }
+                else :
+                    try {
+                        $server->outputImage($path, $request->getQueryParams());
+                    } catch (FileNotFoundException $e) {
+                        $this->config('debug', false)
+                            ? $response->getBody()->write($e->getMessage())
+                            : $server->outputImage($this->config('holder'), $request->getQueryParams());
                     }
                 endif;
-                */
-                try {
-                    $server->outputImage($path, $request->getQueryParams());
-                } catch (FileNotFoundException $e) {
-                    //$server->outputImage($this->config('holder'), $request->getQueryParams());
-                    $response->getBody()->write($e->getMessage());
-                }
 
                 return $response;
             });
