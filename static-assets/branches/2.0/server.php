@@ -8,9 +8,9 @@
  * @version 2.0.0
  */
 
-use tiFy\Plugins\StaticAssets\Server\Container;
+use tiFy\Plugins\StaticAssets\Server\ServerManager;
 
 define('SHORTINIT', true);
 require_once '../../../wp-load.php';
 
-new Container();
+new ServerManager();
