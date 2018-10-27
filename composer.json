@@ -1,6 +1,6 @@
 {
   "name": "presstify-plugins/static-assets",
-  "description": "Gestion de fichiers medias client/server.",
+  "description": "Gestion de ressource medias client/server.",
   "type": "presstify-plugin",
   "keywords": [
     "presstify",

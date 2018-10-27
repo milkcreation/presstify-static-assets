@@ -2,21 +2,39 @@
 
 namespace tiFy\Plugins\StaticAssets\Client;
 
-use League\Glide\Signatures\Signature;
-use League\Glide\Urls\UrlBuilder;
 use Symfony\Component\Finder\Finder;
 use tiFy\Kernel\Parameters\ParamsBagController;
+use tiFy\Plugins\StaticAssets\Contracts\CommonParamsBag;
+use tiFy\Plugins\StaticAssets\Contracts\CommonSignature;
+use tiFy\Plugins\StaticAssets\Contracts\CommonUrl;
 
 class ClientController extends ParamsBagController
 {
+    /**
+     * Chemin vers les ressources.
+     * @var string
+     */
+    protected $path = '';
+
+    /**
+     * Type de ressources.
+     * @var string
+     */
+    protected $type = '';
+
     /**
      * CONSTRUCTEUR.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($path, $type)
     {
-        parent::__construct(config('static-assets'));
+        $this->path = $path;
+        $this->type = $type;
+
+        /** @var CommonParamsBag $params */
+        $params = container()->get('assets.common.params');
+        parent::__construct($params->get("{$this->getType()}.{$this->getPath()}", []));
     }
 
     /**
@@ -58,6 +76,26 @@ class ClientController extends ParamsBagController
     }
 
     /**
+     * Récupération du chemin vers les ressources.
+     *
+     * @return string
+     */
+    public function getPath()
+    {
+        return $this->path;
+    }
+
+    /**
+     * Récupération du type de ressources
+     *
+     * @return string css|img|js.
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
      * Chemin absolu vers une ressource locale.
      * {@internal Retourne le chemin absolu vers la racine du répertoire de stockage des ressources locales.}
      *
@@ -94,13 +132,18 @@ class ClientController extends ParamsBagController
     public function url($path = null, $params = [])
     {
         if (is_null($path)) :
-            return rtrim((($url = $this->get('url')) ? $url : request()->getBaseUrl()), '/') .
-                (($base_path = $this->get('base_url')) ? '/' . ltrim(rtrim($base_path, '/'), '/') : '');
+            return rtrim((($url = $this->get('url')) ? $url : ''), '/') .
+                (($base_url = $this->get('base_url')) ? '/' . ltrim(rtrim($base_url, '/'), '/') : '');
         elseif ($secure = $this->get('secure')) :
-            return $this->url() . (new UrlBuilder('', new Signature($secure)))->getUrl($path, $params);
+            /** @var CommonSignature $signature */
+            $signature = container()->get('assets.common.signature', [$secure]);
+
+            /** @var CommonUrl $urlBuilder */
+            $urlBuilder = container()->get('assets.common.url', ['', $signature]);
+
+            return $this->url() . $this->normalize($this->getPath()) . $urlBuilder->getUrl($path, $params);
         else :
-            return add_query_arg($params, $this->url() . $this->normalize($path)
-            );
+            return add_query_arg($params, $this->url() . $this->normalize($this->getPath()) . $this->normalize($path));
         endif;
     }
 }
