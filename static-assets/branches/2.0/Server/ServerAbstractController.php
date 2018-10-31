@@ -4,10 +4,10 @@ namespace tiFy\Plugins\StaticAssets\Server;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use tiFy\Kernel\Parameters\ParamsBagController;
+use tiFy\Kernel\Params\ParamsBag;
 use tiFy\Plugins\StaticAssets\Contracts\ServerController;
 
-class ServerAbstractController extends ParamsBagController implements ServerController
+class ServerAbstractController extends ParamsBag implements ServerController
 {
     use ServerResolver;
 

@@ -4,9 +4,9 @@ namespace tiFy\Plugins\StaticAssets\Contracts;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use tiFy\Contracts\Kernel\ParamsBagInterface;
+use tiFy\Contracts\Kernel\ParamsBag;
 
-interface ServerController extends ParamsBagInterface, ServerResolver
+interface ServerController extends ParamsBag, ServerResolver
 {
     /**
      * Traitement de l'affichage de la ressource.
