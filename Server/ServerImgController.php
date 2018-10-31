@@ -8,7 +8,7 @@ use League\Glide\ServerFactory;
 use League\Glide\Signatures\SignatureException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use tiFy\Kernel\Parameters\ParamsBagController;
+use tiFy\Kernel\Params\ParamsBag;
 
 class ServerImgController extends ServerAbstractController
 {

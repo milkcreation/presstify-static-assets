@@ -2,9 +2,9 @@
 
 namespace tiFy\Plugins\StaticAssets\Contracts;
 
-use tiFy\Contracts\Kernel\ParamsBagInterface;
+use tiFy\Contracts\Kernel\ParamsBag;
 
-interface CommonParamsBag extends ParamsBagInterface
+interface CommonParamsBag extends ParamsBag
 {
 
 }

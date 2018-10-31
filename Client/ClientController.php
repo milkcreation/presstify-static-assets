@@ -3,12 +3,12 @@
 namespace tiFy\Plugins\StaticAssets\Client;
 
 use Symfony\Component\Finder\Finder;
-use tiFy\Kernel\Parameters\ParamsBagController;
+use tiFy\Kernel\Params\ParamsBag;
 use tiFy\Plugins\StaticAssets\Contracts\CommonParamsBag;
 use tiFy\Plugins\StaticAssets\Contracts\CommonSignature;
 use tiFy\Plugins\StaticAssets\Contracts\CommonUrl;
 
-class ClientController extends ParamsBagController
+class ClientController extends ParamsBag
 {
     /**
      * Chemin vers les ressources.

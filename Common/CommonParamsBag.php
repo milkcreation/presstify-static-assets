@@ -3,10 +3,10 @@
 namespace tiFy\Plugins\StaticAssets\Common;
 
 use Illuminate\Support\Arr;
-use tiFy\Kernel\Parameters\ParamsBagController;
+use tiFy\Kernel\Params\ParamsBag;
 use tiFy\Plugins\StaticAssets\Contracts\CommonParamsBag as CommonParamBagContract;
 
-class CommonParamsBag extends ParamsBagController implements CommonParamBagContract
+class CommonParamsBag extends ParamsBag implements CommonParamBagContract
 {
     /**
      * {@inheritdoc}
