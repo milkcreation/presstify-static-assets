@@ -6,6 +6,7 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use tiFy\Kernel\Params\ParamsBag;
 use tiFy\Plugins\StaticAssets\Contracts\ServerController;
+use Zend\Diactoros\Response;
 
 class ServerAbstractController extends ParamsBag implements ServerController
 {
@@ -32,8 +33,10 @@ class ServerAbstractController extends ParamsBag implements ServerController
     /**
      * {@inheritdoc}
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $args)
+    public function __invoke(ServerRequestInterface $request, $args)
     {
+        $response = new Response();
+
         $path = $args['path'] ?? null;
 
         return $response;

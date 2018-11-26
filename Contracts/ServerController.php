@@ -2,7 +2,6 @@
 
 namespace tiFy\Plugins\StaticAssets\Contracts;
 
-use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use tiFy\Contracts\Kernel\ParamsBag;
 
@@ -17,5 +16,5 @@ interface ServerController extends ParamsBag, ServerResolver
      *
      * @return string
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $args);
+    public function __invoke(ServerRequestInterface $request, $args);
 }

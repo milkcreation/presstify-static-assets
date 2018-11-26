@@ -40,16 +40,6 @@ trait ServerResolver
     }
 
     /**
-     * Instance du contrôleur de réponse serveur HTTP.
-     *
-     * @return object|ResponseInterface
-     */
-    public function httpResponse()
-    {
-        return $this->app->resolve('server.http.response');
-    }
-
-    /**
      * Récupération de paramètre de configuration.
      * {@internal Retourne l'instance du controleur si $key vaut null}
      *
