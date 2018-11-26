@@ -39,10 +39,7 @@ class ServerManager extends Container implements ServerManagerContract
         endforeach;
 
         try {
-            $response = $this->router()->dispatch(
-                $this->httpRequest(),
-                $this->httpResponse()
-            );
+            $response = $this->router()->dispatch($this->httpRequest());
         } catch (NotFoundException $e) {
             echo $e->getMessage();
             die(500);

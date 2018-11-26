@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Fluent;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Container\ServiceProvider\BootableServiceProviderInterface;
-use League\Route\RouteCollection;
+use League\Route\Router;
 use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
 use tiFy\Plugins\StaticAssets\Common\CommonParamsBag;
 use Zend\Diactoros\Response\SapiEmitter;
@@ -23,7 +23,6 @@ class ServerServiceProvider extends AbstractServiceProvider implements BootableS
         'assets.server.controller.js',
         'assets.server.http.emitter',
         'assets.server.http.request',
-        'assets.server.http.response',
         'assets.server.request',
         'assets.server.router'
     ];
@@ -82,10 +81,6 @@ class ServerServiceProvider extends AbstractServiceProvider implements BootableS
         $this->getContainer()->share('assets.server.http.request', function () {
             return (new DiactorosFactory())->createRequest($this->getContainer()->get('assets.server.request'));
         });
-
-        $this->getContainer()->share('assets.server.http.response', function () {
-            return (new DiactorosFactory())->createResponse(new Response());
-        });
     }
 
     /**
@@ -107,6 +102,6 @@ class ServerServiceProvider extends AbstractServiceProvider implements BootableS
      */
     public function registerServerRouter()
     {
-        $this->getContainer()->share('assets.server.router', new RouteCollection($this->getContainer()));
+        $this->getContainer()->share('assets.server.router', new Router());
     }
 }

@@ -9,14 +9,17 @@ use League\Glide\Signatures\SignatureException;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use tiFy\Kernel\Params\ParamsBag;
+use Zend\Diactoros\Response;
 
 class ServerImgController extends ServerAbstractController
 {
     /**
      * {@inheritdoc}
      */
-    public function __invoke(ServerRequestInterface $request, ResponseInterface $response, $args)
+    public function __invoke(ServerRequestInterface $request, $args)
     {
+        $response = new Response();
+
         $path = $args['path'] ?? null;
 
         $server = ServerFactory::create([

@@ -26,13 +26,6 @@ interface ServerResolver
     public function httpRequest();
 
     /**
-     * Instance du contrôleur de réponse serveur HTTP.
-     *
-     * @return object|ResponseInterface
-     */
-    public function httpResponse();
-
-    /**
      * Récupération de paramètre de configuration.
      * {@internal Retourne l'instance du controleur si $key vaut null}
      *
