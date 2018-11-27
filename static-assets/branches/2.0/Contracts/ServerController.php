@@ -11,7 +11,6 @@ interface ServerController extends ParamsBag, ServerResolver
      * Traitement de l'affichage de la ressource.
      *
      * @param ServerRequestInterface $request Requête serveur valide PSR.
-     * @param ResponseInterface $response Réponse serveur valide PSR.
      * @param array $args Liste des variables passées en arguments.
      *
      * @return string
