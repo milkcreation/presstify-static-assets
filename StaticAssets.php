@@ -6,7 +6,7 @@
  * @author Jordy Manner <jordy@milkcreation.fr>
  * @package presstify-plugins/static-assets
  * @namespace \tiFy\Plugins\StaticAssets
- * @version 2.0.2
+ * @version 2.0.3
  */
 
 namespace tiFy\Plugins\StaticAssets;
