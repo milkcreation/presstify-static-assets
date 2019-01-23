@@ -8,9 +8,9 @@ return [
     'secure'       => getenv('NONCE_KEY'),
     'url'          => '',
     'base_url'     => '/assets',
-    'source'       => getenv('PIXVERT_RESOURCES') . '/medias',
+    'source'       => getenv('RESOURCES_DIR') . '/medias',
     'cache'        => ABSPATH . '/wp-content/uploads/cache',
-    'holder'       => '/common/holder.png',
-    'default_path' => '/common',
+    'holder'       => 'holder.png',
+    'default_path' => '/',
     'debug'        => false
 ];

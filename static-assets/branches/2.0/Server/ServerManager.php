@@ -47,8 +47,9 @@ class ServerManager extends Container implements ServerManagerContract
             echo $e->getMessage();
             die(500);
         }
-
-        $this->httpEmitter()->emit($response);
+        if (isset($response)) :
+            $this->httpEmitter()->emit($response);
+        endif;
     }
 
     /**
