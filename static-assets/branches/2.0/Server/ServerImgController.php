@@ -2,13 +2,12 @@
 
 namespace tiFy\Plugins\StaticAssets\Server;
 
-use League\Container\ContainerInterface;
 use League\Glide\Filesystem\FileNotFoundException;
 use League\Glide\ServerFactory;
 use League\Glide\Signatures\SignatureException;
-use Psr\Http\Message\ResponseInterface;
+use League\Flysystem\Filesystem;
+use League\Flysystem\Memory\MemoryAdapter;
 use Psr\Http\Message\ServerRequestInterface;
-use tiFy\Kernel\Params\ParamsBag;
 use Zend\Diactoros\Response;
 
 class ServerImgController extends ServerAbstractController
@@ -24,7 +23,7 @@ class ServerImgController extends ServerAbstractController
 
         $server = ServerFactory::create([
             'source' => $this->get('source') ? : dirname(__DIR__) . '/Resources/source',
-            'cache'  => $this->get('cache') ? : dirname(__DIR__) . '/Resources/cache'
+            'cache'  => $this->get('cache') ? : new Filesystem(new MemoryAdapter())
         ]);
 
         if ($secure = $this->get('secure')) :

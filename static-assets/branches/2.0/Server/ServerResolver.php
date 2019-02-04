@@ -4,12 +4,11 @@ namespace tiFy\Plugins\StaticAssets\Server;
 
 use Illuminate\Http\Request;
 use League\Route\Route;
-use League\Route\RouteCollection;
-use Psr\Http\Message\ResponseInterface;
+use League\Route\Router;
 use Psr\Http\Message\ServerRequestInterface;
-use tiFy\Plugins\StaticAssets\Contracts\ServerParamsBag;
+use tiFy\Plugins\StaticAssets\Contracts\CommonParamsBag;
 use tiFy\Plugins\StaticAssets\Contracts\CommonSignature;
-use Zend\Diactoros\Response\SapiEmitter;
+use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 
 trait ServerResolver
 {
@@ -46,11 +45,11 @@ trait ServerResolver
      * @param null|string $key Clé d'indexe de l'attribut. Syntaxe à point permise. Tous si null.
      * @param mixed $default Valeur de retour par défaut.
      *
-     * @return mixed|ServerParamsBag
+     * @return mixed|CommonParamsBag
      */
     public function params($key = null, $default = null)
     {
-        /** @var ServerParamsBag $params */
+        /** @var CommonParamsBag $params */
         $params = $this->app->resolve('common.params');
 
         if (is_null($key)) :
@@ -95,7 +94,7 @@ trait ServerResolver
     /**
      * Instance du contrôleur de routage.
      *
-     * @return object|RouteCollection
+     * @return object|Router
      */
     public function router()
     {
@@ -104,6 +103,8 @@ trait ServerResolver
 
     /**
      * Instance du contrôleur de routage.
+     *
+     * @param string $signkey
      *
      * @return object|CommonSignature
      */

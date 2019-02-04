@@ -36,8 +36,6 @@ class ServerAbstractController extends ParamsBag implements ServerController
     {
         $response = new Response();
 
-        $path = $args['path'] ?? null;
-
         return $response;
     }
 }
