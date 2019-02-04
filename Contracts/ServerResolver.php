@@ -4,10 +4,9 @@ namespace tiFy\Plugins\StaticAssets\Contracts;
 
 use Illuminate\Http\Request;
 use League\Route\Route;
-use League\Route\RouteCollection;
-use Psr\Http\Message\ResponseInterface;
+use League\Route\Router;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\Response\SapiEmitter;
+use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 
 interface ServerResolver
 {
@@ -58,7 +57,7 @@ interface ServerResolver
     /**
      * Instance du contrôleur de routage.
      *
-     * @return object|RouteCollection
+     * @return object|Router
      */
     public function router();
 }

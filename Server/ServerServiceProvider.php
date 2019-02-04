@@ -2,15 +2,12 @@
 
 namespace tiFy\Plugins\StaticAssets\Server;
 
-use Illuminate\Http\Response;
 use Illuminate\Http\Request;
-use Illuminate\Support\Fluent;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Container\ServiceProvider\BootableServiceProviderInterface;
 use League\Route\Router;
 use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
-use tiFy\Plugins\StaticAssets\Common\CommonParamsBag;
-use Zend\Diactoros\Response\SapiEmitter;
+use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 
 class ServerServiceProvider extends AbstractServiceProvider implements BootableServiceProviderInterface
 {
@@ -28,7 +25,7 @@ class ServerServiceProvider extends AbstractServiceProvider implements BootableS
     ];
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function boot()
     {
@@ -36,7 +33,7 @@ class ServerServiceProvider extends AbstractServiceProvider implements BootableS
     }
 
     /**
-     * {@inheritdoc}
+     * @inheritdoc
      */
     public function register()
     {
@@ -57,7 +54,7 @@ class ServerServiceProvider extends AbstractServiceProvider implements BootableS
     public function registerServerControllers()
     {
         $this->getContainer()->add('assets.server.controller.css', function ($app, $attrs = []) {
-            return new ServerCssController($app, $attrs = []);
+            return new ServerCssController($app, $attrs);
         });
 
         $this->getContainer()->add('assets.server.controller.img', function ($app, $attrs = []) {

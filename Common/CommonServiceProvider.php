@@ -3,9 +3,6 @@
 namespace tiFy\Plugins\StaticAssets\Common;
 
 use League\Container\ServiceProvider\AbstractServiceProvider;
-use tiFy\Plugins\StaticAssets\Common\CommonParamsBag;
-use tiFy\Plugins\StaticAssets\Common\CommonSignature;
-use tiFy\Plugins\StaticAssets\Common\CommonUrl;
 
 class CommonServiceProvider extends AbstractServiceProvider
 {

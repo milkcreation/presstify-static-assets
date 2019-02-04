@@ -1,22 +1,18 @@
 <?php
 
-/**
- * @name StaticAssets
- * @desc Gestion de ressource medias client/server.
- * @author Jordy Manner <jordy@milkcreation.fr>
- * @package presstify-plugins/static-assets
- * @namespace \tiFy\Plugins\StaticAssets
- * @version 2.0.3
- */
-
 namespace tiFy\Plugins\StaticAssets;
 
 use tiFy\Plugins\StaticAssets\Common\CommonServiceProvider;
 
 /**
- * Class TbSet
- * @package tiFy\Plugins\StaticAssets
+ * Class StaticAssets
  *
+ * @desc Gestion de ressource medias client/server.
+ * @author Jordy Manner <jordy@milkcreation.fr>
+ * @package tiFy\Plugins\StaticAssets
+ * @version 2.0.4
+ *
+ * USAGE :
  * Activation :
  * ----------------------------------------------------------------------------------------------------
  * Dans config/app.php ajouter tiFy\Plugins\StaticAssets\StaticAssets à la liste des fournisseurs de services
@@ -38,7 +34,7 @@ use tiFy\Plugins\StaticAssets\Common\CommonServiceProvider;
  *
  * Configuration :
  * ----------------------------------------------------------------------------------------------------
- * Dans le dossier de config, créer le fichier social.php
+ * Dans le dossier de config, créer le fichier static-assets.php
  * @see /vendor/presstify-plugins/static-assets/Resources/config/static-assets.php Exemple de configuration.
  */
 final class StaticAssets

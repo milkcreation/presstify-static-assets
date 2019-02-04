@@ -11,7 +11,7 @@ use tiFy\Plugins\StaticAssets\Contracts\CommonUrl;
 class ClientController extends ParamsBag
 {
     /**
-     * Chemin vers les ressources.
+     * Chemin relatif vers le répertoire des ressources.
      * @var string
      */
     protected $path = '';
@@ -24,6 +24,9 @@ class ClientController extends ParamsBag
 
     /**
      * CONSTRUCTEUR.
+     *
+     * @param string $path Chemin relatif vers le répertoire des ressources.
+     * @param string $type Type de ressource. img|css|js. (@todo js & css)
      *
      * @return void
      */
@@ -48,7 +51,7 @@ class ClientController extends ParamsBag
      */
     public function findPathname($filename, $paths = [], $regex = '%s')
     {
-        if ($default = $this->get('default_path')) :
+        if ($default = $this->get('fallback_path')) :
             $paths[] = $default;
         endif;
 

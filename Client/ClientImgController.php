@@ -7,6 +7,8 @@ class ClientImgController extends ClientController
     /**
      * CONSTRUCTEUR.
      *
+     * @param string $path Chemin relatif vers le repertoire des ressources.
+     *
      * @return void
      */
     public function __construct($path)

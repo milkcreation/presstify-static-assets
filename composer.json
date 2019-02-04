@@ -10,7 +10,7 @@
     "flysystem"
   ],
   "homepage": "https://svn.tigreblanc.fr/presstify-plugins/static-assets",
-  "time": "2019-01-23",
+  "time": "2019-02-04",
   "license": "proprietary",
   "authors": [
     {
@@ -27,7 +27,8 @@
   ],
   "require": {
     "composer/installers": "~1.0",
-    "presstify/framework": ">=1.4"
+    "presstify/framework": ">=1.4",
+    "league/flysystem-memory": "^1.0"
   },
   "autoload": {
     "psr-4": {
