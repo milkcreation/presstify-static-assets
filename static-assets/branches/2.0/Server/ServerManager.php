@@ -7,6 +7,7 @@ use League\Route\Http\Exception\NotFoundException;
 use League\Route\Http\Exception\MethodNotAllowedException;
 use tiFy\Plugins\StaticAssets\Common\CommonServiceProvider;
 use tiFy\Plugins\StaticAssets\Contracts\ServerManager as ServerManagerContract;
+use Zend\HttpHandlerRunner\Exception\EmitterException;
 
 class ServerManager extends Container implements ServerManagerContract
 {
@@ -47,8 +48,15 @@ class ServerManager extends Container implements ServerManagerContract
             echo $e->getMessage();
             die(500);
         }
+
         if (isset($response)) :
-            $this->httpEmitter()->emit($response);
+            try {
+                $emitter = $this->httpEmitter();
+                $emitter->emit($response);
+            } catch(EmitterException $e) {
+                echo $e->getMessage();
+                die(500);
+            }
         endif;
     }
 

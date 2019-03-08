@@ -10,7 +10,7 @@ use tiFy\Plugins\StaticAssets\Common\CommonServiceProvider;
  * @desc Gestion de ressource medias client/server.
  * @author Jordy Manner <jordy@milkcreation.fr>
  * @package tiFy\Plugins\StaticAssets
- * @version 2.0.4
+ * @version 2.0.5
  *
  * USAGE :
  * Activation :
