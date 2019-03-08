@@ -1,0 +1,12 @@
+# Usage
+# ----------------------------------------------------------------------------------------------------------------------
+# !!! Créer un dossier cdn à la racine du site et déposer le fichier htaccess.txt renommé .htaccess.
+# Modifier {{rewrite_base}} en corresponce au sous-dossier d'installation du site (optionnel).
+
+# !static-assets
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /{{rewrite_base}}/cdn/
+    RewriteRule . /{{rewrite_base}}/vendor/presstify-plugins/static-assets/server.php [L]
+</IfModule>
+# static-assets!
