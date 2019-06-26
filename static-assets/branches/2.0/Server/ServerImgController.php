@@ -43,7 +43,7 @@ class ServerImgController extends ServerAbstractController
             } catch (FileNotFoundException $e) {
                 $this->get('debug', false)
                     ? $response->getBody()->write($e->getMessage())
-                    : $server->outputImage($this->get('holder'), $request->getQueryParams());
+                    : $server->outputImage($this->get('placeholder'), $request->getQueryParams());
             }
         endif;
 

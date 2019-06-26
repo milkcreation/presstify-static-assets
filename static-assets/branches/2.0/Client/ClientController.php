@@ -51,18 +51,18 @@ class ClientController extends ParamsBag
      */
     public function findPathname($filename, $paths = [], $regex = '%s')
     {
-        if ($default = $this->get('fallback_path')) :
+        if ($default = $this->get('fallback_path')) {
             $paths[] = $default;
-        endif;
+        }
 
         $dirs = [];
-        foreach ($paths as $path) :
-            if (is_dir($this->localDir($path))) :
+        foreach ($paths as $path) {
+            if (is_dir($this->localDir($path))) {
                 $dirs[] = $this->localDir($path);
-            endif;
-        endforeach;
+            }
+        }
 
-        if (!empty($dirs)) :
+        if (!empty($dirs)) {
             $finder = new Finder();
             $finder
                 ->in($dirs)
@@ -70,12 +70,16 @@ class ClientController extends ParamsBag
                 ->files()
                 ->name(sprintf($regex, $filename));
 
-            foreach ($finder as $file) :
-                return preg_replace('#^' .preg_quote($this->localDir(), '/'). '#', '', $file->getPathname());
-            endforeach;
-        endif;
+            foreach ($finder as $file) {
+                return preg_replace('#^' . preg_quote($this->localDir(), '/') . '#', '', $file->getPathname());
+            }
+        }
 
-        return '';
+        if ($placeholder = $this->get('placeholder')) {
+            return $placeholder;
+        } else {
+            return '';
+        }
     }
 
     /**
@@ -134,10 +138,10 @@ class ClientController extends ParamsBag
      */
     public function url($path = null, $params = [])
     {
-        if (is_null($path)) :
+        if (!$path) {
             return rtrim((($url = $this->get('url')) ? $url : ''), '/') .
                 (($base_url = $this->get('base_url')) ? '/' . ltrim(rtrim($base_url, '/'), '/') : '');
-        elseif ($secure = $this->get('secure')) :
+        } elseif ($secure = $this->get('secure')) {
             /** @var CommonSignature $signature */
             $signature = container()->get('assets.common.signature', [$secure]);
 
@@ -145,8 +149,8 @@ class ClientController extends ParamsBag
             $urlBuilder = container()->get('assets.common.url', ['', $signature]);
 
             return $this->url() . $this->normalize($this->getPath()) . $urlBuilder->getUrl($path, $params);
-        else :
+        } else {
             return add_query_arg($params, $this->url() . $this->normalize($this->getPath()) . $this->normalize($path));
-        endif;
+        }
     }
 }
