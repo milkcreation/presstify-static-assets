@@ -52,10 +52,10 @@ return [
             'cache'        => false,
 
             /**
-             * Image de remplacement.
+             * Chemin relatif vers l'image de remplacement.
              * @var string
              */
-            'holder'       => '',
+            'placeholder'       => '',
 
             /**
              * Chemin relatif vers de récupération des ressources.
