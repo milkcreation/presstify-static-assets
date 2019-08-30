@@ -36,8 +36,11 @@ class ServerImgController extends ServerAbstractController
                 $server->outputImage($path, $request->getQueryParams());
             } catch (SignatureException $e) {
                 $response->getBody()->write($e->getMessage());
+            } catch (FileNotFoundException $e) {
+                $response->getBody()->write($e->getMessage());
             }
         else :
+
             try {
                 $server->outputImage($path, $request->getQueryParams());
             } catch (FileNotFoundException $e) {
