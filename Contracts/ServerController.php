@@ -1,9 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace tiFy\Plugins\StaticAssets\Contracts;
 
 use Psr\Http\Message\ServerRequestInterface;
-use tiFy\Contracts\Kernel\ParamsBag;
+use tiFy\Contracts\Support\ParamsBag;
 
 interface ServerController extends ParamsBag, ServerResolver
 {

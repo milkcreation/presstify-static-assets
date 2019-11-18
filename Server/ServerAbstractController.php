@@ -1,11 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace tiFy\Plugins\StaticAssets\Server;
 
 use Psr\Http\Message\ServerRequestInterface;
-use tiFy\Kernel\Params\ParamsBag;
 use tiFy\Plugins\StaticAssets\Contracts\ServerController;
 use Zend\Diactoros\Response;
+use tiFy\Support\ParamsBag;
 
 class ServerAbstractController extends ParamsBag implements ServerController
 {
@@ -26,7 +26,7 @@ class ServerAbstractController extends ParamsBag implements ServerController
     {
         $this->app = $app;
 
-        parent::__construct($attrs);
+        $this->set($attrs)->parse();
     }
 
     /**

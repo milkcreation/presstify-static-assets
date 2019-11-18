@@ -1,23 +1,23 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace tiFy\Plugins\StaticAssets\Common;
 
 use Illuminate\Support\Arr;
-use tiFy\Kernel\Params\ParamsBag;
 use tiFy\Plugins\StaticAssets\Contracts\CommonParamsBag as CommonParamBagContract;
+use tiFy\Support\ParamsBag;
 
 class CommonParamsBag extends ParamsBag implements CommonParamBagContract
 {
     /**
-     * {@inheritdoc}
+     * @inheritDoc
      */
-    public function parse($attrs = [])
+    public function parse(): ?CommonParamBagContract
     {
-        parent::parse($attrs);
+        parent::parse();
 
-        foreach(['css', 'img', 'js'] as $type) :
-            if ($mapping = $this->get($type, [])) :
-                foreach($mapping as $path => $attrs) :
+        foreach(['css', 'img', 'js'] as $type) {
+            if ($mapping = $this->get($type, [])) {
+                foreach ($mapping as $path => $attrs) {
                     $this->set(
                         "{$type}.{$path}",
                         array_merge(
@@ -25,8 +25,10 @@ class CommonParamsBag extends ParamsBag implements CommonParamBagContract
                             Arr::wrap($attrs)
                         )
                     );
-                endforeach;
-            endif;
-        endforeach;
+                }
+            }
+        }
+
+        return $this;
     }
 }
