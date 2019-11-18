@@ -1,12 +1,12 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace tiFy\Plugins\StaticAssets\Client;
 
 use Symfony\Component\Finder\Finder;
-use tiFy\Kernel\Params\ParamsBag;
 use tiFy\Plugins\StaticAssets\Contracts\CommonParamsBag;
 use tiFy\Plugins\StaticAssets\Contracts\CommonSignature;
 use tiFy\Plugins\StaticAssets\Contracts\CommonUrl;
+use tiFy\Support\ParamsBag;
 
 class ClientController extends ParamsBag
 {
@@ -37,7 +37,7 @@ class ClientController extends ParamsBag
 
         /** @var CommonParamsBag $params */
         $params = container()->get('assets.common.params');
-        parent::__construct($params->get("{$this->getType()}.{$this->getPath()}", []));
+        $this->set($params->get("{$this->getType()}.{$this->getPath()}", []));
     }
 
     /**

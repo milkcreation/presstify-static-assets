@@ -23,7 +23,7 @@ class CommonServiceProvider extends AbstractServiceProvider
         $this->getContainer()->share('assets.common.params', function () {
             $attrs = include(ABSPATH . 'wp-content/themes/' . get_option('template') . '/config/static-assets.php');
 
-            return new CommonParamsBag($attrs);
+            return (new CommonParamsBag())->set($attrs)->parse();
         });
 
         $this->getContainer()->add('assets.common.signature', function ($signkey) {
