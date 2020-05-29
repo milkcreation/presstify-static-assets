@@ -3,12 +3,12 @@
 namespace tiFy\Plugins\StaticAssets\Server;
 
 use Illuminate\Http\Request;
+use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
 use League\Route\Route;
 use League\Route\Router;
 use Psr\Http\Message\ServerRequestInterface;
 use tiFy\Plugins\StaticAssets\Contracts\CommonParamsBag;
 use tiFy\Plugins\StaticAssets\Contracts\CommonSignature;
-use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 
 trait ServerResolver
 {

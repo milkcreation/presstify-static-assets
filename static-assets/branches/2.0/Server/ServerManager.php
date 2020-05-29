@@ -2,12 +2,12 @@
 
 namespace tiFy\Plugins\StaticAssets\Server;
 
+use Laminas\HttpHandlerRunner\Exception\EmitterException;
 use League\Container\Container;
 use League\Route\Http\Exception\NotFoundException;
 use League\Route\Http\Exception\MethodNotAllowedException;
 use tiFy\Plugins\StaticAssets\Common\CommonServiceProvider;
 use tiFy\Plugins\StaticAssets\Contracts\ServerManager as ServerManagerContract;
-use Zend\HttpHandlerRunner\Exception\EmitterException;
 
 class ServerManager extends Container implements ServerManagerContract
 {

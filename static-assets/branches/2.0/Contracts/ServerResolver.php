@@ -2,11 +2,11 @@
 
 namespace tiFy\Plugins\StaticAssets\Contracts;
 
+use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
 use Illuminate\Http\Request;
 use League\Route\Route;
 use League\Route\Router;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 
 interface ServerResolver
 {

@@ -2,9 +2,9 @@
 
 namespace tiFy\Plugins\StaticAssets\Server;
 
+use Laminas\Diactoros\Response;
 use Psr\Http\Message\ServerRequestInterface;
 use tiFy\Plugins\StaticAssets\Contracts\ServerController;
-use Zend\Diactoros\Response;
 use tiFy\Support\ParamsBag;
 
 class ServerAbstractController extends ParamsBag implements ServerController
