@@ -3,11 +3,11 @@
 namespace tiFy\Plugins\StaticAssets\Server;
 
 use Exception;
+use Laminas\Diactoros\Response;
 use League\Glide\ServerFactory;
 use League\Flysystem\Filesystem;
 use League\Flysystem\Memory\MemoryAdapter;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\Response;
 
 class ServerImgController extends ServerAbstractController
 {

@@ -2,12 +2,12 @@
 
 namespace tiFy\Plugins\StaticAssets\Server;
 
+use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
 use Illuminate\Http\Request;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Container\ServiceProvider\BootableServiceProviderInterface;
 use League\Route\Router;
 use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
-use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 
 class ServerServiceProvider extends AbstractServiceProvider implements BootableServiceProviderInterface
 {
