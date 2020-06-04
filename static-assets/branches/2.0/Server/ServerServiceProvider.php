@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Container\ServiceProvider\BootableServiceProviderInterface;
 use League\Route\Router;
-use Symfony\Bridge\PsrHttpMessage\Factory\DiactorosFactory;
+use Nyholm\Psr7\Factory\Psr17Factory;
+use Symfony\Bridge\PsrHttpMessage\Factory\PsrHttpFactory;
 
 class ServerServiceProvider extends AbstractServiceProvider implements BootableServiceProviderInterface
 {
@@ -76,7 +77,10 @@ class ServerServiceProvider extends AbstractServiceProvider implements BootableS
         $this->getContainer()->share('assets.server.http.emitter', new SapiEmitter());
 
         $this->getContainer()->share('assets.server.http.request', function () {
-            return (new DiactorosFactory())->createRequest($this->getContainer()->get('assets.server.request'));
+            $psr17Factory = new Psr17Factory();
+            $psrHttpFactory = new PsrHttpFactory($psr17Factory, $psr17Factory, $psr17Factory, $psr17Factory);
+
+            return $psrHttpFactory->createRequest($this->getContainer()->get('assets.server.request'));
         });
     }
 
